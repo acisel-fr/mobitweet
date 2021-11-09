@@ -1,4 +1,4 @@
-![mobitweet](app/icons/favicon.png)
+![mobitweet](app/icons/logo.png)
 
 [![DOI](https://zenodo.org/badge/426163463.svg)](https://zenodo.org/badge/latestdoi/426163463)
 
