@@ -1,0 +1,21 @@
+<template name="message">
+
+    <div class="h4 text-uppercase text-center">{{title}}</div>
+    <div class="text-muted text-center mb-2">{{subtitle}}</div>  
+        
+    <div class="{{color}} text-center small mb-2">Nombre de caractères : {{nbr}}/280</div>
+
+    <textarea class="form-control" id="survey" rows="{{type.rows}}"></textarea>
+    
+    {{#if type.append}}<small class="d-flex align-items-center mt-2"><div class="text-muted mr-2">Texte joint :</div>{{type.append}}</small>{{/if}}
+    
+    <small class="text-muted">Ajouter des termes : </small><br/>
+    
+    {{#each help_buttons}}
+        {{> message_help_button}}
+    {{/each}}
+    
+</template>
+<template name="message_help_button">
+    <button type="button" class="btn btn-outline-secondary btn-sm mb-1">{{this}}</button>
+</template>

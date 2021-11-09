@@ -1,0 +1,31 @@
+<template name="geosearchList">
+
+        <div class="d-flex align-items-center my-2">
+                <div class="font-weight-bold mr-2">{{title}}</div>
+                {{#if hasMoreItems}}
+                    <button type="button" class="btn btn-secondary btn-sm mr-2" id="expandMore">
+                        <span class="oi oi-fullscreen-enter"></span>
+                    </button>
+                {{/if}}
+                {{#if expanded}}
+                    <button type="button" class="btn btn-secondary btn-sm" id="expandLess">
+                        <span class="oi oi-fullscreen-exit"></span>
+                    </button>
+                {{/if}}
+        </div>
+
+        {{#if hasItems}}
+            {{> geosearchItems items=items}}
+        {{else}}
+            <p class="mx-2">
+                Aucun résultat pour l'instant.
+                {{no_result_message}}
+            </p>
+        {{/if}}
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+</template>

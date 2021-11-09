@@ -1,0 +1,38 @@
+<template name="draw_path">
+    <div class="fixed-bottom">
+        <div class="d-flex justify-content-center">
+            <div class="btn-toolbar" role="toolbar">
+                {{#each group in groups}}
+                {{#if group.show}}
+                <div class="d-flex flex-column align-items-center {{group.mr}}">
+                    <div class="btn-group btn-group-sm" role="group">
+                        {{#each group.buttons}}
+                        {{> draw_path_button}}
+                        {{/each}}
+                    </div>
+                    <small class="text-muted">{{group.label}}</small>
+                </div>
+                {{/if}}
+                {{/each}}      
+            </div>  
+            <div class="btn-toolbar ml-2" role="toolbar">
+                <div class="d-flex flex-column align-items-center {{group.mr}}">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button id="js-{{code}}" type="button" class="btn btn-outline-dark">
+                            {{distance}} km
+                        </button>                    
+                    </div>
+                    <small class="text-muted">stat</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="draw_path_button">
+    {{#if show}}
+        <button id="js-{{code}}" type="button" class="btn btn-{{color}} {{active}}">
+            <span class="oi oi-{{icon}}"></span>
+        </button>
+    {{/if}}
+</template>

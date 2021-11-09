@@ -1,0 +1,276 @@
+<template name="participate">
+
+    <div class="container my-3">
+        
+        <div class="h4 text-uppercase">
+            <span class="oi oi-plus mr-2"></span>
+            Participer
+        </div>
+        
+        <div class="d-flex flex-row text-muted mb-3">Enregistrez votre déplacement, répondez à une enquête, émettez un signal ou postez un message.</div>
+
+    </div> 
+        
+    <div class="container-fluid">
+
+        <div class="card-columns">
+
+            <div class="card">
+
+                <div class="h5 card-header d-flex flex-row align-items-center">
+                    <i class="material-icons text-primary mr-2">save</i>
+                    Mon déplacement
+                </div>
+
+                <div class="card-body">
+
+                    {{#if is_recording}}
+                        {{#if has_trajectory}}
+
+                            <div class="card-text text-center">                        
+                                {{origin_activity}}<span class="oi oi-arrow-thick-right mx-1"></span>{{destination_activity}}
+                            </div>
+                            <div class="card-text small mb-2 text-center">                        
+                                {{origin}}<span class="oi oi-arrow-thick-right mx-1"></span>{{destination}} ({{distance}})
+                            </div>
+                                        
+                            {{#if waypoints}}
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"><small></small></th>
+                                            <th scope="col"><small><strong>km</strong></small></th>
+                                            <th scope="col"><small><strong>km/h</strong></small></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col"><small><strong>Action</strong></small></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each waypoints}}
+                                            {{> participate_waypoint}}
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            {{/if}}
+
+                            <div class="card-text text-muted">
+                                {{#if state 'ready'}}
+                                    Lorsque vous quitterez votre lieu d'origine, enregistrez votre départ.
+                                {{/if}}
+                                {{#if state 'walking'}}
+                                    Actuellement vous marchez. Lorsque vous serez dans un véhicule, enregistrez votre montée.
+                                    Une fois à destination, enregistrez votre arrivée. Ou bien, enregistrez régulièrement votre position.
+                                {{/if}}
+                                {{#if state 'travelling'}}
+                                    À votre sortie du véhicule, enregistrez votre descente. Ou bien, enregistrez régulièrement votre position.
+                                {{/if}}
+                            </div>
+
+                            <div class="d-flex flex-row mt-2">
+                                <div class="d-flex flex-column mr-1">                    
+                                    {{#if state 'ready'}}
+                                        <a href="{{pathFor 'surveys' code='new-travel' query='field=0'}}" class="btn btn-primary btn-sm" role="button">Départ</a>
+                                    {{/if}}
+                                    {{#if state 'walking'}}
+                                        <a href="{{pathFor 'surveys' code='board' query='field=0'}}" class="btn btn-primary btn-sm" role="button">Montée</a>
+                                    {{/if}}
+                                    {{#if state 'travelling'}}
+                                        <a href="{{pathFor 'surveys' code='alight' query='field=0'}}" class="btn btn-primary btn-sm">Descente</a>
+                                    {{/if}}
+                                </div>
+                                {{#if state 'walking'}}
+                                    <div class="d-flex flex-column mr-1">                    
+                                        <a href="{{pathFor 'surveys' code='arrival' query='field=0'}}" class="btn btn-primary btn-sm">Arrivée</a>
+                                    </div>
+                                {{/if}}
+                                {{> localise_me}}
+                                <div class="d-flex flex-column ml-auto">
+                                    <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#cancel_trip_modal">Annuler</button>
+                                </div>
+                            </div>
+                            
+                        {{/if}}  
+                    {{else}}                
+                        <div class="card-text text-muted">Enregistrez anonymement votre déplacement régulier en cours.</div>
+                        <a href="{{pathFor 'surveys' code='select-od' query='field=0'}}" role="button" class="btn btn-primary btn-sm mt-2">Enregistrer</a>
+                    {{/if}} 
+                    
+                </div>
+
+                {{#if is_travelling}}
+                    <div class="card-footer small d-flex flex-row justify-content-between">
+                        {{#each indicators}}
+                            <div class="d-flex flex-column text-center">
+                                <div>{{value}}</div>
+                                <div class="text-muted">{{unit}}</div>
+                            </div>
+                        {{/each}}
+                    </div>
+                {{/if}}
+
+            </div>
+
+            <div class="card">
+                <div class="h5 card-header d-flex flex-row align-items-center">
+                    <i class="material-icons text-primary mr-2">assignment</i>
+                    Mes enquêtes
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="h5">
+                            À propos de moi
+                        </div>
+                        {{#if demography}}                            
+                        <div class="card-text small">{{demography}}</div>
+                        {{else}}
+                        <div class="card-text text-muted">Répondez à notre enquête anonyme pour mieux vous connaître et comprendre vos contraintes.</div>
+                        {{/if}}
+                        {{#if demo_update}}
+                        <a href="{{pathFor 'surveys' code='demography' query='field=0'}}" role="button" class="btn btn-primary btn-sm mt-2">
+                            {{#if demography}}                            
+                            Mettre à jour
+                            {{else}}
+                            Répondre
+                            {{/if}}
+                        </a>
+                        {{/if}}
+                        {{#if demo_time_ago}}
+                            <div class="small text-muted mt-1">
+                                Répondu {{demo_time_ago}}.
+                            </div>
+                        {{/if}}
+                    </li>
+                </ul>
+            </div>    
+
+            <div class="card">
+                <div class="h5 card-header d-flex flex-row align-items-center">
+                    <span class="oi oi-rss text-primary mr-2"></span>
+                    Mes signaux
+                </div>
+                <div class="card-body">
+                    <div class="card-text text-muted">
+                        Émettez un signal public à propos de votre déplacement en cours.
+                        {{#if is_travelling}}
+                        {{else}}
+                            Pour cela, enregistrez votre départ.
+                        {{/if}}
+                    </div>
+                    {{#if is_travelling}}
+                        <a href="{{transport_state_path}}" role="button" class="btn btn-primary btn-sm mt-2">Émettre</a>
+                    {{/if}}
+                </div>
+            </div>
+                
+            <div class="card">
+                <div class="h5 card-header d-flex flex-row align-items-center">
+                    <span class="oi oi-share-boxed text-primary mr-2"></span>
+                    Mes messages
+                </div>
+                <div class="card-body">
+                    <div class="card-text text-muted">
+                        Postez un message public à la communauté.
+                        {{#if is_travelling}}
+                        {{else}}
+                            Pour cela, enregistrez votre départ.
+                        {{/if}}
+                    </div>
+                    {{#if is_travelling}}
+                        <a href="{{pathFor 'surveys' code='message' query='field=0'}}" role="button" class="btn btn-primary btn-sm mt-2">Poster</a>
+                    {{/if}}
+                </div>
+            </div>
+
+                    <!--
+                        {{> participate_option icon='train' label="État de mon transport"}}
+                        {{> participate_option icon='local_hospital' label="Mon alternative"}}
+                        {{> participate_option icon='airline_seat_recline_extra' label="Mon confort"}}
+                        {{> participate_option icon='restaurant_menu' label="On déjeune ?"}}
+                        {{> participate_option icon='brush' label="Mes créations"}}
+                        {{> participate_option icon='smartphone' label="Mes outils"}}
+                    -->
+
+        </div>  
+    </div>    
+
+    <div class="modal fade" id="cancel_trip_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Annulation du déplacement</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>                    
+                        Toutes vos données ont été enregistrées dans votre compte.
+                    </p>
+                    <p>                    
+                        Vous êtes sur le point d'arrêter l'enregistrement de votre déplacement. 
+                    </p>
+                    <p>                    
+                        Confirmez-vous cette action ? 
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="js-cancel" data-dismiss="modal">Confirmer</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+                   
+</template>
+
+<template name="participate_option">
+    <a href="{{path}}" class="list-group-item list-group-item-action d-flex align-items-center">
+        <i class="material-icons text-primary mr-2">{{icon}}</i>
+        {{label}}
+    </a>
+</template>
+
+<template name="localise_me">
+    {{#if show}}
+        <div class="d-flex flex-column">
+            <button id="js-location" type="button" class="btn btn-{{color}} btn-sm"><span class="oi oi-location"></span></button>
+        </div>
+    {{/if}}
+</template>
+
+<template name="participate_waypoint">
+    <tr>
+        <td><small>{{time}}</small></td>
+        <td><small>{{distance}}</small></td>
+        <td><small>{{vitesse}}</small></td>
+        <td><small>{{orientation}}</small></td>
+        <td><i class="material-icons md-18">{{icon}}</i></td>
+        <td><small>{{type.label}}</small></td>
+    </tr>
+</template>
+        
+                    <!--ul class="list-group">
+
+                        {{#if adapt_trajectory}}
+
+                            <li class="list-group-item flex-column align-items-start">
+                                <div class="d-flex align-items-center">
+                                    <i class="material-icons text-primary mr-2">gesture</i>
+                                    Mon parcours
+                                </div>    
+                                <p class="mt-2">Vous semblez éloigner de votre parcours habituel. Si c'est le cas, adaptez-le, ou bien annuler.</p>
+                                <div class="d-flex flex-row mt-2">
+                                    <a href="{{pathFor 'surveys' code='adapt-path' query='field=0'}}" class="btn btn-primary btn-sm" role="button">Adapter</a>
+                                    <button id="js-cancel-adapt" class="btn btn-outline-secondary btn-sm ml-auto" type="button">Annuler</button>
+                                </div>
+                            </li>
+
+                        {{/if}}
+
+
+                    </ul-->

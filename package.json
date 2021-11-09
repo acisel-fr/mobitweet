@@ -1,0 +1,33 @@
+{
+  "name": "mobitweet",
+  "version": "1.0.6",
+  "description": "Application Mobitweet",
+  "scripts": {
+    "release": "standard-version",
+    "patch": "npm version patch",
+    "checksums-create": "find app -type f -exec shasum -a 256 {} + | grep -v -e 'app/node_modules' | grep -v -e '.DS_Store' > checksums",
+    "checksums-verify": "shasum -c checksums",
+    "ots-stamp": "node node_modules/opentimestamps/ots-cli.js stamp checksums",
+    "ots-commit": "git add checksums checksums.ots && git commit -m 'Génération de la liste des fichiers et horodatage de la liste'",
+    "ots-clean": "rm checksums checksums.ots",
+    "ots-info": "node node_modules/opentimestamps/ots-cli.js info checksums.ots",
+    "ots-verify": "node node_modules/opentimestamps/ots-cli.js verify checksums.ots",
+    "timestamp": "run-s patch ots-clean checksums-create ots-stamp ots-commit",
+    "verify": "run-s checksums-verify ots-verify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chasset/mobitweet.git"
+  },
+  "author": "Pierre-Olivier Chasset",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chasset/mobitweet/issues"
+  },
+  "homepage": "https://github.com/chasset/mobitweet#readme",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "opentimestamps": "^0.4.8",
+    "standard-version": "^9.3.2"
+  }
+}

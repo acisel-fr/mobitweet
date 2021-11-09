@@ -1,0 +1,14 @@
+<template name="number">
+
+    <div class="h4 text-uppercase text-center">{{title}}</div>
+    <div class="text-muted text-center">{{subtitle}}</div>     
+
+    <div class="input-group mt-2">
+        <div class="input-group-prepend">
+            <span class="input-group-text">{{type.params.label}}</span>
+        </div>                
+        <input id="survey" type="number" class="form-control">
+    </div>
+    <small class="form-text text-muted">{{type.params.legend}}</small>
+
+</template>

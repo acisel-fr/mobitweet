@@ -1,0 +1,11 @@
+{
+    "API": [
+        {
+            "id": "Twitter",
+            "consumer_key": "XXX",
+            "consumer_secret": "XXX",
+            "accessToken": "XXX",
+            "accessTokenSecret": "XXX"
+        }
+    ]
+}

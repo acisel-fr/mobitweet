@@ -1,0 +1,26 @@
+<template name="footer">
+    {{#if show_bar}}
+        <div class="fixed-bottom mb-2">
+            <div class="d-flex justify-content-center">
+                <div class="btn-toolbar" role="toolbar">
+                    {{#each group in groups}}
+                        {{#if group.show}}
+                            <div class="d-flex flex-column align-items-center {{group.mr}}">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    {{#each button in group.buttons}}
+                                        {{#if button.show}}
+                                            <button id="js-{{button.code}}" type="button" class="btn btn-{{button.color}} {{button.active}}">
+                                                <span class="oi oi-{{button.icon}}"></span>
+                                            </button>
+                                        {{/if}}
+                                    {{/each}}
+                                </div>
+                                <small class="text-muted">{{group.label}}</small>
+                            </div>
+                        {{/if}}
+                    {{/each}}      
+                </div>  
+            </div>
+        </div>
+    {{/if}}
+</template>

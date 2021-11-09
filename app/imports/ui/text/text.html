@@ -1,0 +1,16 @@
+<template name="text">
+
+    <div class="h4 text-uppercase text-center">{{title}}</div>
+    <div class="text-muted text-center">{{subtitle}}</div>     
+
+    <div class="input-group mt-2">
+        {{#if type.label}}
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{type.label}}</span>
+            </div>          
+        {{/if}}      
+        <input id="survey" type="text" class="form-control" placeholder="{{type.placeholder}}" value="{{type.value}}">
+    </div>
+    {{#if type.legend}}<small class="form-text text-muted">{{type.legend}}</small>{{/if}}
+
+</template>

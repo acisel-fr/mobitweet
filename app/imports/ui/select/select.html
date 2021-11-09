@@ -1,0 +1,18 @@
+<template name="select">
+
+    <div class="h4 text-uppercase text-center">{{title}}</div>
+    <div class="text-muted text-center">{{subtitle}}</div>            
+
+    <ul class="list-group mt-2">
+        {{#each type.options}}
+            {{> select_option}}
+        {{/each}}
+    </ul>        
+
+</template>
+
+<template name="select_option">
+    <li class="list-group-item list-group-item-action d-flex align-items-center {{selected}}">
+        {{#if icon}}<i class="material-icons text-primary md-18 mr-2">{{icon}}</i>{{/if}}{{label}}
+    </li>
+</template>

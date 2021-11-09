@@ -1,0 +1,69 @@
+<template name="parameters">
+    <div class="container mt-2">
+
+        <div class="h4 text-uppercase"><span class="oi oi-cog mr-2"></span>Paramètres</div>
+        <div class="text-muted">Gérez vos paramètres, votre compte et votre application.</div>
+
+        <p class="mt-2"><strong>Mes filtres de signaux et messages</strong></p>
+
+        <div class="list-group">
+            <div class="d-flex flex-row flex-wrap justify-content-around">
+                {{#each filters}}
+                    {{#if show}}
+                        <div class="d-flex flex-column align-items-center mr-2">
+                            <div class="btn-group btn-group-sm" role="group">
+                                {{#each options}}
+                                    {{> parameters_button}}
+                                {{/each}}
+                            </div>
+                            <small class="text-muted mb-2">{{label}}</small>
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
+        
+        {{#if twitter}}
+        
+            <p class="mt-2"><strong>Identification de mes messages</strong></p>
+
+            <p class="text-muted small">Désirez-vous associer votre profil Twitter à tous vos signaux et messages passés et futurs ?</p>
+
+            <div class="d-flex justify-content-around">
+                <button id="js-associate" type="button" class="btn btn-primary btn-sm">Associer</button>
+                <button id="js-dissociate" type="button" class="btn btn-outline-danger btn-sm">Dissocier</button>
+            </div>
+
+        {{/if}}
+
+        <p class="mt-2"><strong>Mon compte</strong></p>
+        
+        <div class="list-group mt-2">
+            <a href="{{pathFor 'authentication'}}" class="list-group-item list-group-item-action"><span class="oi oi-badge text-primary mr-2"></span>Mon authentification</a>
+            <a href="{{pathFor 'data'}}" class="list-group-item list-group-item-action"><span class="oi oi-grid-four-up text-primary mr-2"></span>Mes données</a>
+            <a href="{{pathFor 'surveys' code='consents-tour' query='field=0'}}" class="list-group-item list-group-item-action"><span class="oi oi-script text-primary mr-2"></span>Mes consentements éclairés</a>
+        </div>    
+        
+        <p class="mt-2"><strong>Mobitweet</strong></p>
+
+        <div class="list-group mt-2">
+            {{#each items}}
+                {{#if show}}
+                <a href='{{path}}' class="list-group-item list-group-item-action">
+                    <span class="oi oi-{{icon}} text-primary mr-2"></span>{{label}}
+                </a>
+                {{/if}}
+            {{/each}}  
+        </div>
+
+    </div> 
+    <br/>
+    <br/>
+    <br/>
+</template>
+
+<template name="parameters_button">
+    {{#if show}}
+        <button type="button" class="btn btn-outline-secondary {{active}}">{{label}}</button>
+    {{/if}}
+</template>

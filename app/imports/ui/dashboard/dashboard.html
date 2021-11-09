@@ -1,0 +1,59 @@
+<template name="dashboard">
+    <div class="container mt-3">
+        <div class="h4 text-uppercase"><span class="oi oi-bar-chart mr-2"></span>Tableau de bord</div>
+        <div class="text-muted mb-3">Indicateurs sur vous et la communauté.</div>  
+    </div>
+    <div class="container-fluid">
+
+        {{#if is_recording}}
+            
+            <div class="d-flex align-items-center my-2">
+                <i class="material-icons mr-2">swap_horiz</i>
+                <strong>
+                    Déplacement
+                </strong>
+            </div>
+            
+            <ul class="list-group">
+                            
+                <li class="list-group-item flex-column align-items-start">
+                    <small>Résultats pour la communauté en attente.</small>
+                </li>                    
+
+            </ul>
+
+            <div class="d-flex align-items-center my-2">
+                <i class="material-icons mr-2">gesture</i>
+                <strong>
+                    Parcours
+                </strong>
+            </div>
+                    
+            <ul class="list-group">
+
+                <li class="list-group-item flex-column align-items-start">
+                    <small>Résultats pour la communauté en attente.</small>
+                </li>                    
+        
+            </ul>
+
+        {{/if}}
+
+        <div class="d-flex align-items-center my-2">
+            <i class="material-icons mr-2">fingerprint</i>
+            <strong>
+                À propos
+            </strong>
+        </div>
+    
+
+        <ul class="list-group">
+
+            <li class="list-group-item flex-column align-items-start">
+                <small>Résultats pour la communauté en attente.</small>
+            </li>                        
+
+        </ul>
+
+    </div>  
+</template>

@@ -1,0 +1,19 @@
+<template name="geosearchItems">
+    <ul class="list-group">
+        {{#each items}}
+            {{> geosearchItem}}
+        {{/each}}
+    </ul>
+    <div class="d-flex justify-content-center mt-2">
+        {{#if hasMoreItems}}
+            <button type="button" class="btn btn-secondary btn-sm mr-2" id="more">
+                <span class="oi oi-fullscreen-enter"></span>
+            </button>
+        {{/if}}
+        {{#if isExpanded}}
+            <button type="button" class="btn btn-secondary btn-sm" id="less">
+                <span class="oi oi-fullscreen-exit"></span>
+            </button>
+        {{/if}}
+        </div>
+</template>

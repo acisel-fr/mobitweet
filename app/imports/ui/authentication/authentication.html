@@ -1,0 +1,104 @@
+<template name="authentication">
+    
+    <div class="container mt-2">
+        {{> button_close}}
+        <p class="h4 text-uppercase"><span class="oi oi-badge mr-2"></span>Mon authentification</p>
+        <p class="text-muted">
+            {{#if currentUser}}
+                Gérez vos authentifications.
+            {{else}}
+                Pour commencer à participer, veuillez vous authentifier avec la méthode de votre choix.
+            {{/if}}
+        </p>
+    </div>
+    
+    {{#if currentUser}}
+        <div class="container-fluid">
+            <div class="card-columns">    
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <a href="{{pathFor 'participate'}}" class="list-group-item active"><span class="oi oi-plus mr-2"></span>Participer</a>
+                    </ul>        
+                </div>
+                <div class="card">
+                    <div class="h5 card-header">Votre authentication</div>
+                    <div class="card-body">
+                        <div class="card-text text-muted">
+                            Téléchargez, déconnectez ou supprimez vos données d'authentifications.
+                        </div>
+                        <div class="d-flex flex-row mt-2">
+                            <a href="{{pathFor 'collections' code='user'}}" class="btn btn-info btn-sm mr-1">
+                                <span class="oi oi-data-transfer-download"></span>
+                            </a>            
+                            <button id="js-logout" type="button" class="btn btn-secondary btn-sm mr-1" tabindex="-1">
+                                <span class="oi oi-power-standby"></span>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#suppressAccountModal" tabindex="-1">
+                                <span class="oi oi-trash"></span>
+                            </button>
+                        </div>      
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Authentifié {{when}}.</small>
+                    </div>
+                </div>
+                <div class="card">
+                    <p class="h5 card-header">Compte Twitter</p>
+                    <div class="card-body">
+                        {{#if twitter}}                
+                            <p class="card-text"><strong>@{{compte}}</strong></p>
+                            <img class="align-self-center" src="{{image}}" width="110">
+                        {{else}}
+                            <div class="card-text text-muted">
+                                Publiez tous vos messages et signaux sur votre compte Twitter.
+                            </div>
+                            <button id="js-login" type="button" class="btn btn-primary btn-sm mt-2">Se connecter</button>
+                        {{/if}}
+                    </div>
+                </div>
+                {{#if courriel}}
+                    <div class="card">
+                        <p class="h5 card-header">Compte mail</p>
+                        <div class="card-body">
+                            <div class="card-text">{{courriel.address}}</div>
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    {{else}}                            
+        <div class="container">
+            {{> atForm}}
+        </div>
+    {{/if}}   
+    <div class="modal fade" id="suppressAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Suppression du compte</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>                    
+                        Cette action supprimera votre compte. 
+                    </p>
+                    <p>                    
+                        Toutes vos données personnelles relatives à votre authentification seront effacées de notre serveur.
+                    </p>
+                    <p>
+                        Vous ne serez alors plus en mesure d'accéder à vos autres données, telles que celles sur les signaux et les messages.                    
+                    </p>
+                    <p>                    
+                        Confirmez-vous cette suppression ? 
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="suppressAccount" data-dismiss="modal">Confirmer</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

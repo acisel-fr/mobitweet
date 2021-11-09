@@ -1,0 +1,74 @@
+<template name="geosearch">
+
+    {{#if view}}
+
+        <div class="h4 text-uppercase text-center">{{title}}</div>
+        <div class="text-muted text-center">{{subtitle}}</div>            
+        
+        {{#if show_filters}}
+        <div class="d-flex justify-content-center mt-2">
+            <div class="btn-group btn-group-sm" role="group">
+                {{#each filters}}
+                    {{> filter}}
+                {{/each}}
+            </div>
+        </div>
+        <small class="text-muted d-flex justify-content-center mt-1">{{text_search_help}}</small>    
+        {{/if}}
+        
+        {{#if search}}
+        
+            <div class="input-group mt-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="material-icons md-18" style="transform: rotate(90deg);">search</i>
+                    </span>
+                </div>
+                <input id="inputGeosearch" type="text" class="form-control" placeholder="Recherche" value="{{pattern}}" autofocus>
+            </div>
+        
+        {{/if}}
+        
+        {{> geosearchList title=results_title items=results }}
+
+    {{/if}}                       
+
+    {{> tools toolbar=toolbar}}
+
+</template>
+
+<template name="filter">
+    <button type="button" class="btn btn-light {{active}}">{{label}}</button>
+</template>
+
+<template name="tools">
+    <div class="fixed-bottom">
+        <div class="d-flex justify-content-center">
+            <div class="btn-toolbar" role="toolbar">
+                {{#each toolbar}}
+                    {{> tools_groups}}
+                {{/each}}            
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="tools_groups">
+    <div class="d-flex flex-column align-items-center mr-2">        
+        <div class="btn-group btn-group-sm" role="group">
+            {{#each buttons}}
+                {{> tools_groups_buttons}}
+            {{/each}}
+        </div>
+        <small class="text-muted">{{legend.label}}</small>
+    </div>
+</template>
+
+<template name="tools_groups_buttons">
+    {{#if show}}
+    <button type="button" class="btn btn-{{color}} {{active}}">
+        <span class="oi oi-{{type}}"></span>
+    </button>
+    {{/if}}
+</template>
+    

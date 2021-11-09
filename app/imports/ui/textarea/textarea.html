@@ -1,0 +1,10 @@
+<template name="textarea">
+
+    <div class="h4 text-uppercase text-center">{{title}}</div>
+    <div class="text-muted text-center mb-2">{{subtitle}}</div>            
+
+    <textarea class="form-control" id="survey" rows="{{type.rows}}" maxlength="{{type.maxlength}}"></textarea>
+    <small class="d-flex align-items-center mt-2"><div class="text-muted mr-2">Texte joint :</div>#{{type.category}}, via @mobitweet_</small>
+    {{#if type.maxlength}}<small class="form-text text-muted fixed-bottom mb-2 d-flex justify-content-center">Nombre de caractères : {{nbr}}/{{type.maxlength}}.</small>{{/if}}
+    
+</template>

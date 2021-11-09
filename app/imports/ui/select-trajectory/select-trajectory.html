@@ -1,0 +1,49 @@
+<template name="select_trajectory">
+
+    <div class="h4 text-uppercase text-center">{{title}}</div>
+    <div class="text-muted text-center">{{subtitle}}</div>            
+
+    <div class="animated fadeInRight mt-2">
+        <ul class="list-group">
+    
+            <a href="{{pathFor 'surveys' code='insert-trajectory' query='field=0'}}" role="button" class="list-group-item list-group-item-action d-flex align-items-center">
+                <i class="material-icons text-primary mr-2">add_circle_outline</i>
+                Ajouter un parcours
+            </a>
+    
+            {{#each trajectories}}
+                {{> select_trajectory_item}}
+            {{/each}}
+    
+        </ul>     
+    </div>        
+
+</template>
+
+<template name="select_trajectory_item">
+
+    <li class="list-group-item list-group-item-action {{active}}">
+
+        <div class="d-flex justify-content-between">
+            <div id="js-start" class="flex-fill">
+                <div class="d-flex align-items-center">
+                    <i class="material-icons text-primary mr-2">{{data.mode.icon}}</i>
+                    {{data.label}}
+                    <small class="text-muted ml-2">{{distance}}</small>
+                </div>
+            </div>
+            {{#if delete_wanted}}
+            {{else}}
+                <button id="js-want-delete" type="button" class="btn btn-outline-secondary btn-sm"><span class="oi oi-trash"></span></button>
+            {{/if}}
+        </div>  
+        {{#if delete_wanted}}
+            <div class="d-flex justify-content-between align-items-center mt-2">
+                <button id="js-delete" type="button" class="btn btn-danger btn-sm">Supprimer</button>
+                <button id="js-close-delete" type="button" class="btn btn-secondary btn-sm">Annuler</button>
+            </div>
+        {{/if}}
+        
+    </li>
+
+</template>

@@ -1,0 +1,28 @@
+<template name="datetime">
+
+    <div class="h4 text-uppercase text-center">{{title}}</div>
+    <div class="text-muted text-center">{{subtitle}}</div>            
+        
+    <div class="input-group mt-2">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Heure</span>
+        </div>                
+        <input id="survey" type="time" class="form-control">
+        <div class="input-group-append">
+            <button id="now" class="btn btn-outline-secondary" type="button"><span class="oi oi-clock"></span></button>
+        </div>
+    </div>
+    <small class="form-text text-muted">Format HH:MM</small>
+
+    <div class="input-group mt-2 datetimepicker">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Jour</span>
+        </div>                
+        <input id="date" type="text" class="form-control">
+        <div class="input-group-append">
+            <button id="today" class="btn btn-outline-secondary" type="button"><span class="oi oi-calendar"></span></button>
+        </div>
+    </div>
+    <small class="form-text text-muted">Format YYYY-MM-DD</small>
+        
+</template>

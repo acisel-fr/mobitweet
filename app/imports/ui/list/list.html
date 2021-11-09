@@ -1,0 +1,87 @@
+<template name="list">
+    <div class="container mt-3">
+        <div class="h4 text-uppercase"><span class="oi oi-list-rich mr-2"></span>Liste</div>
+        <div class="text-muted mb-3">Signaux et messages de la communauté.</div>            
+    </div>
+    <div class="container">
+        <ul class="list-group mb-2">
+            <li id="js-participate" class="list-group-item active"><span class="oi oi-plus mr-2"></span>Participer</li>
+        </ul>
+        <ul class="list-group">
+            {{#each messages}}
+                <li class="list-group-item list-group-item-action">
+                    {{#if user}}
+                        <div class="d-flex flex-row align-items-center">
+                            <div id="js-message" class="d-flex flex-column mr-2">
+                                <img src="{{user.image}}" width="40">
+                            </div>
+                            <div id="js-message" class="d-flex flex-column small">
+                                <div class="d-flex flex-row align-items-center">
+                                    <div class="font-weight-bold">
+                                        {{user.name}} 
+                                    </div>
+                                    <div class="text-muted ml-1">
+                                        @{{user.login}} 
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row text-muted">
+                                    {{#if ordonnee}}{{ordonnee}}{{#if devant}} {{devant}}{{/if}},{{/if}}
+                                    {{date}}.
+                                </div>
+                            </div>
+                            {{#if owner}}
+                                {{#if delete_wanted}}
+                                {{else}}
+                                    <div class="d-flex flex-column ml-auto">
+                                        <button id="js-want-delete" type="button" class="btn btn-outline-secondary btn-sm"><span class="oi oi-trash"></span></button>
+                                    </div>
+                                {{/if}}            
+                            {{/if}}
+                        </div>
+                        <div id="js-message" class="d-flex flex-row mt-2">
+                            {{#each lines}}
+                                {{this}}<br/>
+                            {{/each}}
+                        </div>
+                    {{else}}
+                        <div class="d-flex flex-row">
+                            <div id="js-message" class="d-flex flex-column">
+                                {{#each lines}}
+                                    {{this}}<br/>
+                                {{/each}}
+                            </div>
+                            {{#if owner}}
+                                {{#if delete_wanted}}
+                                {{else}}
+                                    <div class="d-flex flex-column ml-auto">
+                                        <button id="js-want-delete" type="button" class="btn btn-outline-secondary btn-sm"><span class="oi oi-trash"></span></button>
+                                    </div>
+                                {{/if}}            
+                            {{/if}}            
+                        </div>
+                        <div id="js-message" class="d-flex flex-row small text-muted mt-1">
+                            {{#if ordonnee}}{{ordonnee}} {{devant}},{{/if}}
+                            {{#if orientation}}{{orientation}},{{/if}}
+                            {{date}}.
+                        </div>
+                    {{/if}}
+                    {{#if delete_wanted}}
+                        <div class="d-flex flex-row justify-content-between align-items-center mt-2">
+                            <button id="js-delete" type="button" class="btn btn-danger btn-sm">Supprimer</button>
+                            <button id="js-close-delete" type="button" class="btn btn-secondary btn-sm">Annuler</button>
+                        </div>
+                    {{/if}}
+        
+                </li>
+            {{else}}
+                <li class="list-group-item">
+                    Aucun message avec les filtres définis dans les paramètres.
+                </li>
+            {{/each}}
+            {{#if more}}<i id="js-limit" class="fa fa-chevron-circle-down fa-2x mt-2 text-center text-secondary"></i>{{/if}}
+        </ul>
+    </div>  
+    <br/>      
+    <br/>      
+    <br/>      
+</template>

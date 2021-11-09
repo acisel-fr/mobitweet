@@ -1,0 +1,15 @@
+<template name="geosearchItem">
+    <li class="list-group-item list-group-item-action {{selected}}">
+        <div class="d-flex flex-row align-items-center">
+            <div class="d-flex flex-column">
+                {{geoJSON.properties.label}}
+            </div>
+            {{#if km}}
+                <div class="d-flex flex-column text-right ml-auto">
+                    <small>{{km}}</small>
+                </div>
+            {{/if}}
+        </div>
+    </li>
+</template>
+    

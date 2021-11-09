@@ -1,0 +1,42 @@
+<template name="data">
+
+    <div class="container mt-2">
+    
+        {{> button_close}}
+        
+        <p class="h4 text-uppercase"><span class="oi oi-grid-four-up mr-2"></span>Mes données</p>
+        <p class="text-muted">Gérez l'intégralité de vos données.</p>
+        
+    </div>
+
+    <div class="container-fluid">
+        <div class="animated fadeInRight">
+            <div class="card-columns">
+                {{#each collections}}
+                    {{> data_card}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+</template>
+
+<template name="data_card">
+    <div class="card">
+        <div class="card-body">
+            <p class="h5 card-title">{{title}}</p>
+            {{#if want_delete}}
+                <div class="d-flex justify-content-between">
+                    <button id="js-delete" type="button" class="btn btn-danger btn-sm">Supprimer</button>            
+                    <button id="js-cancel-delete" type="button" class="btn btn-secondary btn-sm">Annuler</button>            
+                </div>
+            {{else}}
+                <div class="d-flex justify-content-between">
+                    <a href="{{path}}" class="btn btn-info"><span class="oi oi-data-transfer-download"></span></a>            
+                    <button id="js-want-delete" type="button" class="btn btn-outline-secondary"><span class="oi oi-trash"></span></button>            
+                </div>
+            {{/if}}
+        </div>
+        <div class="card-footer text-muted small">{{stored}}</div>    
+    </div> 
+</template>
