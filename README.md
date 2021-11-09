@@ -1,4 +1,4 @@
-[mobitweet](https://github.com/acisel-chasset-net/mobitweet/edit/main/app/icons/favicon.png)
+![mobitweet](app/icons/favicon.png)
 
 [![DOI](https://zenodo.org/badge/426163463.svg)](https://zenodo.org/badge/latestdoi/426163463)
 
