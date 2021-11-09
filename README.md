@@ -1,7 +1,5 @@
 <img src="app/icons/logo.png" width="100" height="100" />
 
-![mobitweet](app/icons/logo.png)
-
 [![DOI](https://zenodo.org/badge/426163463.svg)](https://zenodo.org/badge/latestdoi/426163463)
 
 ## Installation
