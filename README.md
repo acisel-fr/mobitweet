@@ -2,6 +2,10 @@
 
 [![DOI](https://zenodo.org/badge/426163463.svg)](https://zenodo.org/badge/latestdoi/426163463)
 
+## **Deprecated**
+
+L’environnement utilisé par cette application ne peut plus être reconstitué à l’identique. Il s’en suit de nombreuses erreurs d’installation et des modules et rend donc l’application inopérante.
+
 ## Installation
 
 L’application Mobitweet fonctionne dans un environnement virtuel. Pour lancer l’application, il est nécessaire d’avoir le logiciel [Docker](https://www.docker.com).
