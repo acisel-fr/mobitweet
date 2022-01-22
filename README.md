@@ -9,7 +9,7 @@ L’application Mobitweet fonctionne dans un environnement virtuel. Pour lancer 
 La machine virtuelle peut alors être créée en utilisant la recette décrite dans le fichier `Dockerfile`. Dans un terminal ouvert à la racine de ce dépôt, lancez la commande suivante :
 
 ```bash
-docker build --no-cache --tag mobitweet:v1 .
+docker build --tag mobitweet:v1 .
 ```
 
 ## Démarrage du serveur de l’application

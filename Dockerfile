@@ -25,30 +25,20 @@ RUN        sudo apt-get install -y mongodb-org
 
 RUN        sudo useradd mobitweet --create-home --shell /bin/bash
 
-USER       mobitweet
+#USER       mobitweet
 RUN        curl "https://install.meteor.com/?release=1.6.1.1" | sh
-USER       root
-RUN        cp "/home/mobitweet/.meteor/packages/meteor-tool/1.6.1_1/mt-os.linux.x86_64/scripts/admin/launch-meteor" /usr/bin/meteor
+#USER       root
+#RUN        cp "/home/mobitweet/.meteor/packages/meteor-tool/1.6.1_1/mt-os.linux.x86_64/scripts/admin/launch-meteor" /usr/bin/meteor
 
 USER       mobitweet
 RUN        mkdir -p /home/mobitweet/app/store
 RUN        mkdir -p /home/mobitweet/app/public
 COPY       --chown=mobitweet:mobitweet app/ /home/mobitweet/app/
-WORKDIR    /home/mobitweet/app/public
-RUN        wget -O public.tar.gz https://www.dropbox.com/s/g7957z23w4c8qrh/public.tar.gz?dl=1
-RUN        tar xzf public.tar.gz
-RUN        rm public.tar.gz
-WORKDIR    /home/mobitweet/app/data
-RUN        wget -O data.tar.gz https://www.dropbox.com/s/tcy24p8q81a3wdl/data.tar.gz?dl=1
-RUN        tar xzf data.tar.gz
-RUN        rm data.tar.gz
 WORKDIR    /home/mobitweet/app
-RUN        mv icons/*.png public/icons
-RUN        rm -fR icons
 
 RUN        meteor npm install
 
 #-- Lancement des services --#
 
 EXPOSE     3000
-ENTRYPOINT bash start.sh
+ENTRYPOINT ["bash", "start.sh"]
