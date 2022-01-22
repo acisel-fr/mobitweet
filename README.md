@@ -4,7 +4,7 @@
 
 ## **Deprecated**
 
-L’environnement utilisé par cette application ne peut plus être reconstitué à l’identique. Il s’en suit de nombreuses erreurs d’installation et des modules et rend donc l’application inopérante.
+L’environnement utilisé par cette application ne peut plus être reconstitué à l’identique. Il s’en suit de nombreuses erreurs d’installation des modules. L’application ne peut donc être lancée.
 
 ## Installation
 
