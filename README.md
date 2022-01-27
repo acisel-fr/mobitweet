@@ -1,4 +1,4 @@
-<img src="app/icons/logo.png" width="100" height="100" />
+<img src="app/public/icons/logo.png" width="100" height="100" />
 
 [![DOI](https://zenodo.org/badge/426163463.svg)](https://zenodo.org/badge/latestdoi/426163463)
 
