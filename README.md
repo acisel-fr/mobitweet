@@ -4,7 +4,7 @@
 
 ## **Deprecated**
 
-L’environnement utilisé par cette application ne peut plus être reconstitué à l’identique. Il s’en suit de nombreuses erreurs d’installation des modules. L’application ne peut donc être lancée. Néanmoins, un (rapport)[chasset-application-collaborative.pdf] montre les capacités de cette application.
+L’environnement utilisé par cette application ne peut plus être reconstitué à l’identique. Il s’en suit de nombreuses erreurs d’installation des modules. L’application ne peut donc être lancée. Néanmoins, un [rapport](chasset-application-collaborative.pdf) montre les capacités de cette application.
 
 ## Installation
 
