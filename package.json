@@ -1,6 +1,6 @@
 {
   "name": "mobitweet",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Application Mobitweet",
   "scripts": {
     "release": "standard-version",
